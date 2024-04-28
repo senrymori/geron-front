@@ -12,6 +12,7 @@ type RequestMethod = "GET" | "POST" | "UPDATE" | "DELETE";
 
 class ApiService {
   baseUrl: string = "http://localhost:3000";
+  bearerToken: Record<string, string> = {};
 
   private _checkNewUrl(url: string) {
     if (url.includes("http://") || url.includes("https://")) {
@@ -40,6 +41,7 @@ class ApiService {
       body: JSON.stringify(options.dto),
       headers: {
         "Content-Type": "application/json",
+        ...this.bearerToken,
         ...options.headers,
       },
     })
@@ -60,6 +62,10 @@ class ApiService {
 
   async post<T extends unknown>(options: RequestOptions) {
     return this._serverRequest<T>(options, "POST");
+  }
+
+  saveBearerToken(token: string) {
+    this.bearerToken = { Authorization: `Bearer ${token}` };
   }
 }
 

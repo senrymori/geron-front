@@ -3,7 +3,7 @@ import { redirect, useNavigate } from "@tanstack/react-router";
 import { FC } from "react";
 import { flushSync } from "react-dom";
 import { Controller, useForm } from "react-hook-form";
-import { apiService } from "../../app/services/ApiService";
+import { apiService } from "../../app/services/api/ApiService";
 import { requiredValidateMaxLength } from "../../components/input-validate";
 import { useAuth } from "../../features/auth";
 import { Button } from "../../shared/ui/Button";

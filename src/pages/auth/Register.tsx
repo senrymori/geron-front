@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import { redirect, useNavigate } from "@tanstack/react-router";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { apiService } from "../../app/services/ApiService";
+import { apiService } from "../../app/services/api/ApiService";
 import {
   requiredEmailValidationRule,
   requiredValidateMaxLength,
