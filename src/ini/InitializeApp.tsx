@@ -17,7 +17,7 @@ const InnerApp: FC = function InnerApp() {
   return <RouterProvider router={router} context={{ isAuthenticated }} />;
 };
 
-export const Init: FC = function Init() {
+export const InitializeApp: FC = function InitializeApp() {
   return (
     <ModalProvider>
       <AuthProvider>

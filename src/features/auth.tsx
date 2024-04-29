@@ -6,7 +6,10 @@ import { Profile } from "./models/Profile";
 export interface AuthContext {
   isAuthenticated: boolean;
   user?: Profile;
+  token: string;
   setToken: (token: string) => void;
+  setUser: (value: Profile) => void;
+  resetToken: () => void;
 }
 
 const AuthContext = createContext<AuthContext | null>(null);
@@ -14,40 +17,39 @@ const AuthContext = createContext<AuthContext | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string>("");
   const [user, setUser] = useState<Profile>();
-  const isAuthenticated = !!token;
+  const isAuthenticated = !!token && !!user;
 
   useEffect(() => {
     if (!tokenService.hasValue()) return;
 
-    const localStorage = tokenService.getValue();
-
-    apiService.saveBearerToken(token);
-    setToken(localStorage.token);
+    const localStorageToken = tokenService.getValue();
+    handleSaveToken(localStorageToken.token);
   }, []);
 
-  useEffect(() => {
-    if (!token) return;
+  const handleResetToken = () => {
+    apiService.deleteBearerToken();
+    tokenService.deleteValue();
+    setToken("");
+  };
 
-    (async () => {
-      try {
-        const response = await apiService.get<Profile>({ url: "/profile" });
-
-        setUser(response.data);
-      } catch (error) {}
-    })();
-  }, [token]);
-
-  const handleSaveToken = (token: string) => {
-    apiService.saveBearerToken(token);
+  const handleSaveToken = (newToken: string) => {
+    apiService.saveBearerToken(newToken);
     tokenService.setValue({
-      token,
+      token: newToken,
     });
-    setToken(token);
+    setToken(newToken);
   };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, user, setToken: handleSaveToken }}
+      value={{
+        isAuthenticated,
+        user,
+        token,
+        setToken: handleSaveToken,
+        resetToken: handleResetToken,
+        setUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

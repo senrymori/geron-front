@@ -67,6 +67,10 @@ class ApiService {
   saveBearerToken(token: string) {
     this.bearerToken = { Authorization: `Bearer ${token}` };
   }
+
+  deleteBearerToken() {
+    this.bearerToken = {};
+  }
 }
 
 export const apiService = new ApiService();

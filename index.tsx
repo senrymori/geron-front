@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
 import "./src/app/styles/index.css";
-import { Init } from "./src/ini/Init";
+import { InitializeApp } from "./src/ini/InitializeApp";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<Init />);
+ReactDOM.createRoot(document.getElementById("root")!).render(<InitializeApp />);

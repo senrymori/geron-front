@@ -1,7 +1,6 @@
 import { TextField } from "@mui/material";
-import { redirect, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { FC } from "react";
-import { flushSync } from "react-dom";
 import { Controller, useForm } from "react-hook-form";
 import { apiService } from "../../app/services/api/ApiService";
 import { requiredValidateMaxLength } from "../../components/input-validate";
@@ -38,9 +37,7 @@ export const Login: FC = function Login() {
         });
 
         if (response.data) {
-          flushSync(() => {
-            setToken(response.data);
-          });
+          setToken(response.data);
 
           navigate({ to: "/" });
         }

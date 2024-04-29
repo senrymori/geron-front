@@ -22,4 +22,8 @@ export class StorageService<T> {
   hasValue() {
     return localStorage.getItem(this.KEY_STORAGE) !== null;
   }
+
+  deleteValue() {
+    localStorage.removeItem(this.KEY_STORAGE);
+  }
 }
