@@ -1,13 +1,11 @@
-import { CircularProgress } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 import { FC, useEffect } from "react";
 import { apiService } from "../../app/services/api/ApiService";
 import { useAuth } from "../../features/auth";
 import { Profile } from "../../features/models/Profile";
+import { Loader } from "../../shared/ui/Loader";
 
-interface Props {}
-
-export const InitPage: FC<Props> = function InitPage() {
+export const InitPage: FC = function InitPage() {
   const { token, resetToken, setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -28,9 +26,5 @@ export const InitPage: FC<Props> = function InitPage() {
     })();
   }, [token]);
 
-  return (
-    <div className={"flex flex-col h-screen justify-center items-center"}>
-      <CircularProgress />
-    </div>
-  );
+  return <Loader isFull={true} />;
 };

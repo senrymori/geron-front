@@ -15,8 +15,11 @@ import { Route as RegisterImport } from './routes/register'
 import { Route as LoginImport } from './routes/login'
 import { Route as IndexImport } from './routes/index'
 import { Route as NotesIndexImport } from './routes/notes/index'
+import { Route as ProjectsAddImport } from './routes/projects/add'
+import { Route as ProjectsProjectIdImport } from './routes/projects/$projectId'
 import { Route as NotesAddImport } from './routes/notes/add'
 import { Route as NotesNoteIdImport } from './routes/notes/$noteId'
+import { Route as ProjectsEditProjectIdImport } from './routes/projects/edit.$projectId'
 import { Route as NotesEditNoteIdImport } from './routes/notes/edit.$noteId'
 
 // Create/Update Routes
@@ -41,6 +44,16 @@ const NotesIndexRoute = NotesIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ProjectsAddRoute = ProjectsAddImport.update({
+  path: '/projects/add',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProjectsProjectIdRoute = ProjectsProjectIdImport.update({
+  path: '/projects/$projectId',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const NotesAddRoute = NotesAddImport.update({
   path: '/notes/add',
   getParentRoute: () => rootRoute,
@@ -48,6 +61,11 @@ const NotesAddRoute = NotesAddImport.update({
 
 const NotesNoteIdRoute = NotesNoteIdImport.update({
   path: '/notes/$noteId',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProjectsEditProjectIdRoute = ProjectsEditProjectIdImport.update({
+  path: '/projects/edit/$projectId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -80,12 +98,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotesAddImport
       parentRoute: typeof rootRoute
     }
+    '/projects/$projectId': {
+      preLoaderRoute: typeof ProjectsProjectIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/projects/add': {
+      preLoaderRoute: typeof ProjectsAddImport
+      parentRoute: typeof rootRoute
+    }
     '/notes/': {
       preLoaderRoute: typeof NotesIndexImport
       parentRoute: typeof rootRoute
     }
     '/notes/edit/$noteId': {
       preLoaderRoute: typeof NotesEditNoteIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/projects/edit/$projectId': {
+      preLoaderRoute: typeof ProjectsEditProjectIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -99,8 +129,11 @@ export const routeTree = rootRoute.addChildren([
   RegisterRoute,
   NotesNoteIdRoute,
   NotesAddRoute,
+  ProjectsProjectIdRoute,
+  ProjectsAddRoute,
   NotesIndexRoute,
   NotesEditNoteIdRoute,
+  ProjectsEditProjectIdRoute,
 ])
 
 /* prettier-ignore-end */

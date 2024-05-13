@@ -8,7 +8,7 @@ interface RequestResponse<T> extends Pick<Response, "status"> {
   data: T;
 }
 
-type RequestMethod = "GET" | "POST" | "UPDATE" | "DELETE";
+type RequestMethod = "GET" | "POST" | "UPDATE" | "DELETE" | "PATCH";
 
 class ApiService {
   baseUrl: string = "http://localhost:3000";
@@ -62,6 +62,10 @@ class ApiService {
 
   async post<T extends unknown>(options: RequestOptions) {
     return this._serverRequest<T>(options, "POST");
+  }
+
+  async patch<T extends unknown>(options: RequestOptions) {
+    return this._serverRequest<T>(options, "PATCH");
   }
 
   saveBearerToken(token: string) {

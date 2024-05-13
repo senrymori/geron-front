@@ -587,6 +587,13 @@
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.15.12.tgz#f3da6ff16c753ab8b2f8d401c1e1534ba8a8a9a9"
   integrity sha512-brRO+tMFLpGyjEYHrX97bzqeF6jZmKpqqe1rY0LyIHAwP6xRVzh++zSecOQorDOCaZJg4XkGT9xfD+RWOWxZBA==
 
+"@mui/icons-material@^5.15.17":
+  version "5.15.17"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.15.17.tgz#518c02354036f7df28c8f9890b1db6a3269fcc2f"
+  integrity sha512-xVzl2De7IY36s/keHX45YMiCpsIx3mNv2xwDgtBkRSnZQtVk+Gqufwj1ktUxEyjzEhBl0+PiNJqYC31C+n1n6A==
+  dependencies:
+    "@babel/runtime" "^7.23.9"
+
 "@mui/material@^5.15.12":
   version "5.15.12"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.15.12.tgz#08d6582e4037f45df510f3bce51fa06b38a9a676"
@@ -753,6 +760,18 @@
   version "1.15.13"
   resolved "https://registry.yarnpkg.com/@tanstack/history/-/history-1.15.13.tgz#544878665989e6ce07872378961fc6717d342682"
   integrity sha512-ToaeMtK5S4YaxCywAlYexc7KPFN0esjyTZ4vXzJhXEWAkro9iHgh7m/4ozPJb7oTo65WkHWX0W9GjcZbInSD8w==
+
+"@tanstack/query-core@5.36.0":
+  version "5.36.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.36.0.tgz#905bd05b6a73e58d70d95912d84e979ed865ab6a"
+  integrity sha512-B5BD3pg/mztDR36i77hGcyySKKeYrbM5mnogOROTBi1SUml5ByRK7PGUUl16vvubvQC+mSnqziFG/VIy/DE3FQ==
+
+"@tanstack/react-query@^5.36.0":
+  version "5.36.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.36.0.tgz#680cb1490d8b823ec7185e1a97065241cda2ea67"
+  integrity sha512-BATvtM0rohwg7pRHUnxgeDiwLWRGZ8OM/4y8LImHVpecQWoH6Uhytu3Z8YV6V7hQ1sMQBFcUrGE1/e4MxR6YiA==
+  dependencies:
+    "@tanstack/query-core" "5.36.0"
 
 "@tanstack/react-router@1.18.3", "@tanstack/react-router@^1.18.3":
   version "1.18.3"
