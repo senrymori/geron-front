@@ -12,14 +12,12 @@ interface Props {
 export const MembersList: FC<Props> = function MembersList(props) {
   const { data } = useGetMembersProject(props.projectId);
 
-  const stylesColumns = !data?.length || data?.length > 1 ? 2 : 1;
-
   if (!data?.length) return null;
 
   return (
     <div className="flex flex-col gap-4 mt-4">
       <Button mode={"dark"}>{"Добавить участника"}</Button>
-      <div className={`columns-${stylesColumns} gap-2`}>
+      <div className={`columns-auto gap-2`}>
         {data?.map((item) => (
           <Card
             key={item.user.username}
