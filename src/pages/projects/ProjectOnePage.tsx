@@ -3,6 +3,7 @@ import { TabMenu, TabMenuItem } from "../../shared/ui/TabMenu";
 import { Typography } from "../../shared/ui/Typography";
 import { Project } from "./project-utils";
 import { MembersList } from "./ui/MembersList";
+import { ProjectTasksList } from "./ui/ProjectTasksList";
 
 const TABS: TabMenuItem[] = [
   {
@@ -27,7 +28,11 @@ export const ProjectOnePage: FC<Project> = function ProjectOnePage(props) {
         onChangeIndex={setActiveTabIndex}
       />
 
-      {activeTabIndex === 0 ? <MembersList projectId={props.id} /> : <></>}
+      {activeTabIndex === 0 ? (
+        <MembersList projectId={props.id} />
+      ) : (
+        <ProjectTasksList projectId={props.id} />
+      )}
     </section>
   );
 };

@@ -44,6 +44,19 @@ interface Member {
   user: Omit<Profile, "email">;
 }
 
+export function useGetParticipantsProject(projectId: string) {
+  return useQuery({
+    queryKey: [...getProjectsQueryKeys(projectId), "participants"],
+    queryFn: async () => {
+      const response = await apiService.get<Omit<Profile, "email">[]>({
+        url: `/projects/${projectId}/participants`,
+      });
+
+      return response.data;
+    },
+  });
+}
+
 export function useGetMembersProject(projectId: string) {
   return useQuery({
     queryKey: [...getProjectsQueryKeys(projectId), "members"],

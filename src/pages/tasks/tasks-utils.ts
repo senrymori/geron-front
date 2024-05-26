@@ -10,7 +10,7 @@ export interface Task {
   title: string;
   startDate: string;
   endDate: string;
-  profile: Omit<Profile, "email">;
+  user: Omit<Profile, "email">;
   project: Project;
   status: TaskStatus;
 }
@@ -22,10 +22,23 @@ interface TaskFilters {
 
 export function useGetMyTasks(filters?: TaskFilters) {
   return useQuery({
-    queryKey: ["tasks", filters],
+    queryKey: ["tasks", "my", filters],
     queryFn: async () => {
       const response = await apiService.get<Task[]>({
         url: "/tasks/my",
+      });
+
+      return response.data;
+    },
+  });
+}
+
+export function useGetTasks(filters?: TaskFilters) {
+  return useQuery({
+    queryKey: ["tasks", filters],
+    queryFn: async () => {
+      const response = await apiService.get<Task[]>({
+        url: "/tasks",
       });
 
       return response.data;

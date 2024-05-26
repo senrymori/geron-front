@@ -15,10 +15,12 @@ import { Route as RegisterImport } from './routes/register'
 import { Route as LoginImport } from './routes/login'
 import { Route as IndexImport } from './routes/index'
 import { Route as NotesIndexImport } from './routes/notes/index'
+import { Route as TasksAddImport } from './routes/tasks/add'
 import { Route as ProjectsAddImport } from './routes/projects/add'
 import { Route as ProjectsProjectIdImport } from './routes/projects/$projectId'
 import { Route as NotesAddImport } from './routes/notes/add'
 import { Route as NotesNoteIdImport } from './routes/notes/$noteId'
+import { Route as ProjectsParticipantsProjectIdImport } from './routes/projects/participants.$projectId'
 import { Route as ProjectsEditProjectIdImport } from './routes/projects/edit.$projectId'
 import { Route as NotesEditNoteIdImport } from './routes/notes/edit.$noteId'
 
@@ -44,6 +46,11 @@ const NotesIndexRoute = NotesIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const TasksAddRoute = TasksAddImport.update({
+  path: '/tasks/add',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ProjectsAddRoute = ProjectsAddImport.update({
   path: '/projects/add',
   getParentRoute: () => rootRoute,
@@ -63,6 +70,12 @@ const NotesNoteIdRoute = NotesNoteIdImport.update({
   path: '/notes/$noteId',
   getParentRoute: () => rootRoute,
 } as any)
+
+const ProjectsParticipantsProjectIdRoute =
+  ProjectsParticipantsProjectIdImport.update({
+    path: '/projects/participants/$projectId',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 const ProjectsEditProjectIdRoute = ProjectsEditProjectIdImport.update({
   path: '/projects/edit/$projectId',
@@ -106,6 +119,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsAddImport
       parentRoute: typeof rootRoute
     }
+    '/tasks/add': {
+      preLoaderRoute: typeof TasksAddImport
+      parentRoute: typeof rootRoute
+    }
     '/notes/': {
       preLoaderRoute: typeof NotesIndexImport
       parentRoute: typeof rootRoute
@@ -116,6 +133,10 @@ declare module '@tanstack/react-router' {
     }
     '/projects/edit/$projectId': {
       preLoaderRoute: typeof ProjectsEditProjectIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/projects/participants/$projectId': {
+      preLoaderRoute: typeof ProjectsParticipantsProjectIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -131,9 +152,11 @@ export const routeTree = rootRoute.addChildren([
   NotesAddRoute,
   ProjectsProjectIdRoute,
   ProjectsAddRoute,
+  TasksAddRoute,
   NotesIndexRoute,
   NotesEditNoteIdRoute,
   ProjectsEditProjectIdRoute,
+  ProjectsParticipantsProjectIdRoute,
 ])
 
 /* prettier-ignore-end */
